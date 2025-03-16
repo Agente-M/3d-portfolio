@@ -3,43 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualización 3D con model-viewer</title>
+    <title>Portafolio de Modelos CAD 3D</title>
     <style>
         body {
             font-family: sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center; /* Centrar el contenido horizontalmente */
+            align-items: center; /* Centrar el contenido verticalmente */
+            min-height: 100vh;
         }
-        .viewer-container {
-            width: 80%;
-            max-width: 900px;
-            margin: 20px auto;
+        .carousel-container {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            text-align: center; /* Centrar el texto dentro del contenedor */
         }
-        model-viewer {
-            width: 100%;
+        #model-viewer-container {
+            width: 80%;
+            max-width: 900px;
             height: 500px; /* Ajusta la altura según necesites */
+            margin: 20px auto;
+        }
+        #model-details {
+            white-space: pre-line;
+            margin-bottom: 20px;
+        }
+        .carousel-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .carousel-navigation button {
+            padding: 10px 20px;
+            cursor: pointer;
         }
     </style>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-    <div class="viewer-container">
-        <h1>Vista Previa Interactiva 3D</h1>
-        <p>Aquí puedes interactuar con el modelo 3D.</p>
-
-        <model-viewer
-            src="mi_ensamblaje.glb"
-            alt="Modelo 3D de tu ensamblaje"
-            auto-rotate
-            camera-controls
-            shadow-intensity="1"
-        ></model-viewer>
-
+    <div class="carousel-container">
+        <h2>Detalle del Modelo</h2>
+        <div id="model-viewer-container">
+            <model-viewer
+                id="model-viewer"
+                src=""
+                alt="Modelo 3D Seleccionado"
+                auto-rotate
+                camera-controls
+                shadow-intensity="1"
+            ></model-viewer>
+        </div>
+        <h3>Especificaciones</h3>
+        <pre id="model-details"></pre>
+        <div class="carousel-navigation">
+            <button id="prev-button">Anterior</button>
+            <span id="model-name-display"></span>
+            <button id="next-button">Siguiente</button>
+        </div>
     </div>
+
+    <script>
+        const modelViewer = document.getElementById('model-viewer');
+        const modelDetails = document.getElementById('model-details');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const modelNameDisplay = document.getElementById('model-name-display');
+
+        const modelsData = [
+            {
+                name: 'Modelo 1',
+                file: 'modelo1.glb',
+                details: `Especificación 1 del Modelo 1:
+                - Dimensión A: ...
+                - Dimensión B: ...
+                - Material: ...`
+            },
+            {
+                name: 'Modelo 2',
+                file: 'modelo2.glb',
+                details: `Especificación 1 del Modelo 2:
+                - Peso: ...
+                - Volumen: ...
+                - Acabado: ...`
+            },
+            // Aquí puedes añadir más modelos
+        ];
+
+        let currentIndex = 0;
+
+        function showModel(index) {
+            if (index < 0) {
+                currentIndex = modelsData.length - 1;
+            } else if (index >= modelsData.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+
+            const currentModel = modelsData[currentIndex];
+            modelViewer.setAttribute('src', currentModel.file);
+            modelViewer.setAttribute('alt', `Modelo 3D de ${currentModel.name}`);
+            modelNameDisplay.textContent = currentModel.name;
+            modelDetails.textContent = currentModel.details;
+        }
+
+        prevButton.addEventListener('click', () => {
+            showModel(currentIndex - 1);
+        });
+
+        nextButton.addEventListener('click', () => {
+            showModel(currentIndex + 1);
+        });
+
+        // Mostrar el primer modelo al cargar la página
+        showModel(currentIndex);
+
+        // Detener la rotación automática al interactuar con el modelo
+        modelViewer.addEventListener('mousedown', () => {
+            modelViewer.removeAttribute('auto-rotate');
+        });
+        modelViewer.addEventListener('touchstart', () => {
+            modelViewer.removeAttribute('auto-rotate');
+        });
+    </script>
 </body>
 </html>
