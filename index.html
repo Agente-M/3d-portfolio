@@ -17,36 +17,70 @@
         }
         .carousel-container {
             background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            border-radius: 8px; /* Bordes más redondeados */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            padding: 30px; /* Más espacio alrededor del contenido */
             text-align: center; /* Centrar el texto dentro del contenedor */
+            width: 80%; /* Ocupar un porcentaje del ancho de la pantalla */
+            max-width: 1000px; /* Ancho máximo para pantallas grandes */
         }
         #model-viewer-container {
-            width: 80%;
-            max-width: 900px;
-            height: 600px; /* Ajustamos la altura */
+            width: 100%; /* Ocupar todo el ancho del contenedor */
+            height: 600px; /* Altura fija más grande */
             margin: 20px auto;
+            border: 1px solid #ddd; /* Borde sutil para el visor */
+            border-radius: 5px;
+            overflow: hidden; /* Para evitar que los modelos se salgan si se hace mucho zoom */
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
         }
         #model-details {
             white-space: pre-line;
             margin-bottom: 20px;
+            font-size: 1.1em; /* Tamaño de fuente un poco mayor */
+            color: #555;
         }
         .carousel-navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 10px;
+            margin-top: 20px;
         }
         .carousel-navigation button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             cursor: pointer;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-navigation button:hover {
+            background-color: #eee;
+        }
+        .carousel-navigation span {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+            line-height: 40px; /* Centrar verticalmente el nombre del modelo */
+            padding: 0 20px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
     </style>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <div class="carousel-container">
-        <h2>Detalle del Modelo</h2>
+        <h2>Portafolio de Modelos CAD 3D</h2>
         <div id="model-viewer-container">
             <model-viewer
                 id="model-viewer"
@@ -55,9 +89,11 @@
                 auto-rotate
                 camera-controls
                 shadow-intensity="1"
-                camera-orbit="0deg 90deg 75%"
-                field-of-view="35deg">
-            </model-viewer>
+                camera-orbit="0deg 90deg auto" /* Ajuste automático del zoom inicial */
+                field-of-view="45deg"
+                min-camera-orbit="auto auto 45%" /* Limitar el zoom hacia adentro */
+                max-camera-orbit="auto auto 150%" /* Limitar el zoom hacia afuera */
+            ></model-viewer>
         </div>
         <h3>Especificaciones</h3>
         <pre id="model-details"></pre>
