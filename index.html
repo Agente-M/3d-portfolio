@@ -163,6 +163,7 @@
         const defaultCameraOrbit = "0deg 90deg 60%"; // Guardamos la vista por defecto
 
         function showModel(index) {
+            console.log('showModel llamado con índice:', index);
             if (index < 0) {
                 currentIndex = modelsData.length - 1;
             } else if (index >= modelsData.length) {
@@ -172,6 +173,7 @@
             }
 
             const currentModel = modelsData[currentIndex];
+            console.log('Modelo actual:', currentModel);
             modelViewer.setAttribute('src', currentModel.file);
             modelViewer.setAttribute('alt', `Modelo 3D de ${currentModel.name}`);
             modelNameDisplay.textContent = currentModel.name;
