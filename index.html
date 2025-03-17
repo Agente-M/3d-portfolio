@@ -95,7 +95,7 @@
             }
         }
     </style>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model_viewer.min.js"></script>
 </head>
 <body>
     <div class="carousel-container">
@@ -108,10 +108,10 @@
                 auto-rotate
                 camera-controls
                 shadow-intensity="1"
-                camera-orbit="0deg 90deg 60%" /* Acercamos la cámara inicialmente */
-                field-of-view="40deg" /* Reducimos un poco el campo de visión */
-                min-camera-orbit="auto auto 30%" /* Limitar el zoom hacia adentro */
-                max-camera-orbit="auto auto 200%" /* Limitar el zoom hacia afuera */
+                camera-orbit="0deg 90deg 60%" /* Vista por defecto */
+                field-of-view="40deg"
+                min-camera-orbit="auto auto 30%"
+                max-camera-orbit="auto auto 200%"
             ></model-viewer>
         </div>
         <div class="model-info-container">
@@ -124,7 +124,7 @@
             <button id="prev-button">Anterior</button>
             <span id="model-name-display"></span>
             <button id="next-button">Siguiente</button>
-        </div>
+            <button id="reset-button">Vista Normal</button> </div>
     </div>
 
     <script>
@@ -132,6 +132,7 @@
         const modelDetails = document.getElementById('model-details');
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
+        const resetButton = document.getElementById('reset-button'); // Referencia al nuevo botón
         const modelNameDisplay = document.getElementById('model-name-display');
 
         const modelsData = [
@@ -156,6 +157,7 @@
         ];
 
         let currentIndex = 0;
+        const defaultCameraOrbit = "0deg 90deg 60%"; // Guardamos la vista por defecto
 
         function showModel(index) {
             if (index < 0) {
@@ -171,6 +173,11 @@
             modelViewer.setAttribute('alt', `Modelo 3D de ${currentModel.name}`);
             modelNameDisplay.textContent = currentModel.name;
             modelDetails.textContent = currentModel.details;
+            modelViewer.setAttribute('camera-orbit', defaultCameraOrbit); // Restablecer la vista al cambiar de modelo
+        }
+
+        function resetView() {
+            modelViewer.setAttribute('camera-orbit', defaultCameraOrbit);
         }
 
         prevButton.addEventListener('click', () => {
@@ -180,6 +187,8 @@
         nextButton.addEventListener('click', () => {
             showModel(currentIndex + 1);
         });
+
+        resetButton.addEventListener('click', resetView); // Añadimos el evento al nuevo botón
 
         // Mostrar el primer modelo al cargar la página
         showModel(currentIndex);
