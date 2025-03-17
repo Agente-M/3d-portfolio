@@ -127,7 +127,7 @@
             <button id="reset-button">Vista Normal</button> </div>
     </div>
 
-<script>
+    <script>
         const modelViewer = document.getElementById('model-viewer');
         const modelDetails = document.getElementById('model-details');
         const prevButton = document.getElementById('prev-button');
@@ -174,7 +174,6 @@
 
             const currentModel = modelsData[currentIndex];
             console.log('Modelo actual:', currentModel);
-            // Intentamos establecer la propiedad src directamente
             modelViewer.src = currentModel.file;
             console.log('modelViewer.src establecido a:', modelViewer.src);
             modelViewer.setAttribute('alt', `Modelo 3D de ${currentModel.name}`);
@@ -188,10 +187,12 @@
         }
 
         prevButton.addEventListener('click', () => {
+            console.log('Botón Anterior clickeado');
             showModel(currentIndex - 1);
         });
 
         nextButton.addEventListener('click', () => {
+            console.log('Botón Siguiente clickeado');
             showModel(currentIndex + 1);
         });
 
