@@ -95,7 +95,7 @@
             }
         }
     </style>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model_viewer.min.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
     <div class="carousel-container">
@@ -135,26 +135,26 @@
         const resetButton = document.getElementById('reset-button'); // Referencia al nuevo botón
         const modelNameDisplay = document.getElementById('model-name-display');
 
-const modelsData = [
-    {
-        name: 'P1_Portafolio', // Corregido: guion bajo
-        file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P1_Portafolio.glb',
-        details: `Especificaciones del modelo P1_Portafolio:
+        const modelsData = [
+            {
+                name: 'P1_Portafolio',
+                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P1_Portafolio.glb',
+                details: `Especificaciones del modelo P1_Portafolio:
         - Aquí puedes añadir detalles sobre este modelo.`
-    },
-    {
-        name: 'P2_Portafolio',
-        file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P2_Portafolio.glb',
-        details: `Especificaciones del modelo P2_Portafolio:
+            },
+            {
+                name: 'P2_Portafolio',
+                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P2_Portafolio.glb',
+                details: `Especificaciones del modelo P2_Portafolio:
         - Detalles adicionales sobre este modelo.`
-    },
-    {
-        name: 'P3_Portafolio', // Corregido: guion bajo
-        file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P3_Portafolio.glb',
-        details: `Especificaciones del modelo P3_Portafolio:
+            },
+            {
+                name: 'P3_Portafolio',
+                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P3_Portafolio.glb',
+                details: `Especificaciones del modelo P3_Portafolio:
         - Más información sobre este modelo.`
-    }
-];
+            }
+        ];
 
         let currentIndex = 0;
         const defaultCameraOrbit = "0deg 90deg 60%"; // Guardamos la vista por defecto
