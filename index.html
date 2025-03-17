@@ -25,7 +25,7 @@
         #model-viewer-container {
             width: 80%;
             max-width: 900px;
-            height: 600px; /* Aumentamos un poco la altura */
+            height: 600px; /* Ajustamos la altura */
             margin: 20px auto;
         }
         #model-details {
@@ -55,7 +55,9 @@
                 auto-rotate
                 camera-controls
                 shadow-intensity="1"
-            ></model-viewer>
+                camera-orbit="0deg 90deg 75%"
+                field-of-view="35deg">
+            </model-viewer>
         </div>
         <h3>Especificaciones</h3>
         <pre id="model-details"></pre>
@@ -81,15 +83,15 @@
         - Aquí puedes añadir detalles sobre este modelo.`
             },
             {
-                name: 'P2 Portafolio',
-                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P2%20Portafolio.glb',
-                details: `Especificaciones del modelo P2 Portafolio:
+                name: 'P2_Portafolio',
+                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P2_Portafolio.glb',
+                details: `Especificaciones del modelo P2_Portafolio:
         - Detalles adicionales sobre este modelo.`
             },
             {
-                name: 'p3_portafolio',
-                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/p3_portafolio.glb',
-                details: `Especificaciones del modelo p3_portafolio:
+                name: 'P3_Portafolio',
+                file: 'https://raw.githubusercontent.com/Agente-M/3d-portfolio/main/P3_Portafolio.glb',
+                details: `Especificaciones del modelo P3_Portafolio:
         - Más información sobre este modelo.`
             }
         ];
