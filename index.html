@@ -208,6 +208,11 @@
         modelViewer.addEventListener('touchstart', () => {
             modelViewer.removeAttribute('auto-rotate');
         });
+
+        // Listener de error para el model-viewer
+        modelViewer.addEventListener('error', (event) => {
+            console.error('Error al cargar el modelo:', event);
+        });
     </script>
 </body>
 </html>
